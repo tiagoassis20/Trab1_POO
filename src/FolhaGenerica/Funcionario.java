@@ -1,34 +1,30 @@
 package folhaGenerica;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class Funcionario implements Serializable{
+public abstract class Funcionario implements Serializable{
 	
 	private static final long serialVersionUID = 8043190151723169974L;
 	
 	private String nome;
 	private int codigo;
+	private List<Empresa> empresas;
 	
-	/**
-	 * Construtor Default
-	 */
 	public Funcionario() {
 		
 	}
 	
-	/**
-	 * Construtor passando nome e c—digo
-	 * @param nome
-	 * @param codigo
-	 */
 	public Funcionario(String nome,int codigo){
 		this.nome = nome;
 		this.codigo = codigo;
 	}
 	
-	/**
-	 * Apresenta c—digo , nome, cargo e sal‡rio do funcion‡rio 
-	 */
+	protected  abstract double salario();
+	
+	protected abstract String cargo();
+	
+	
 	void gerarContaCheque(){
 		
 		System.out.println("Codigo: " + codigo);
@@ -38,20 +34,6 @@ public class Funcionario implements Serializable{
 		
 	}
 	
-	
-	protected double salario(){
-		
-		return 0.0;
-	}
-	
-	protected String cargo(){
-		
-		return null;
-	}
-	
-	/*
-	 * Apresentae c—digo e nome do funcion‡rio
-	 */
 	public void exibir(){
 		
 		System.out.println("Codigo: " + codigo);
@@ -65,8 +47,17 @@ public class Funcionario implements Serializable{
 	public String getNome() {
 		return nome;
 	}
+	public List<Empresa> getEmpresas() {
+		return empresas;
+	}
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
+	}
+	public void setEmpresas(List<Empresa> empresas) {
+		this.empresas = empresas;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 }

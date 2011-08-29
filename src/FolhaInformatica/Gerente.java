@@ -9,11 +9,15 @@ public class Gerente extends Mensalista{
 	public Gerente(String nome, int codigo, double salario) {
 		super(nome, codigo, salario);
 	}
+
+	@Override
+	protected double comissao() {
+		return salario() * (0.05);
+	}
 	
-	protected String cargo(){
-		return "";
+	@Override
+	protected String cargo() {
+		return "Gerente";
 	}
-	public double comissao(){
-		return 0.0;
-	}
+	
 }

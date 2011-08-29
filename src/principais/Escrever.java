@@ -1,7 +1,7 @@
-package teste;
+package principais;
 
-public class Principal {
-
+public class Escrever {
+	
 	public static void main(String[] args) {
 
 	}

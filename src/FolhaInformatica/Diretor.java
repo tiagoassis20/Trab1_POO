@@ -9,11 +9,15 @@ public class Diretor extends Mensalista{
 	public Diretor(String nome, int codigo, double salario) {
 		super(nome, codigo, salario);
 	}
+
+	@Override
+	protected double comissao() {
+		return salario() + 300;
+	}
+
+	@Override
+	protected String cargo() {
+		return "Diretor";
+	}
 	
-	protected String cargo(){
-		return "";
-	}
-	public double comissao(){
-		return 0.0;
-	}
 }

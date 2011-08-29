@@ -12,24 +12,14 @@ public class Empresa implements Serializable{
 	private String nome;
 	private List<Funcionario> funcionarios;
 	
-	/**
-	 * MŽtodo Construtor Default
-	 */
 	public Empresa() {
 		
 	}
 	
-	/**
-	 * MŽtodo Construdor Recebendo Nome
-	 * @param nome
-	 */
 	public Empresa(String nome) {
 		this.nome = nome;
 	}
 	
-	/**
-	 * gera o contra cheque de todos funcion‡rios
-	 */
 	public void gerarFolha(){
 		
 		for(Funcionario f : funcionarios){
@@ -37,40 +27,33 @@ public class Empresa implements Serializable{
 		}
 		
 	}
-	
-	/**
-	 * Mostra o funcion‡rio,o qual, o c—digo foi passado por parametro
-	 * @param codigo
-	 */
+
 	public void exibirFuncionario(int codigo){
+	
+		boolean achou = false;
 		
-		for(int i =0; i <= funcionarios.size();i++){
-			Funcionario f = new Funcionario();
-			f = funcionarios.get(i);
+		for(Funcionario f : funcionarios){
 			if(f.getCodigo() == codigo){
-				
+				f.exibir();
+				achou = true;
 			}
 		}
 		
+		if(achou == false){
+			System.out.println("Funcion‡rio nao encontrado");
+		}
 	}
 	
-	/**
-	 * Adiciona um Funcion‡rio
-	 * @param funcionario
-	 * @return
-	 */
 	public boolean inserirFuncionario(Funcionario funcionario){
 		
-		for(int i =0; i <= funcionarios.size();i++){
-			Funcionario f = new Funcionario();
-			f = funcionarios.get(i);
+		for(Funcionario f : funcionarios){
 			if(f.getCodigo() == funcionario.getCodigo()){
-				System.out.println("O c—digo: "+funcionario.getCodigo()+" j‡ existe.");
+				System.out.println("Esse funcion‡rio j‡ existe!");
 				return false;
-			}else{
-				funcionarios.add(funcionario);
 			}
 		}
+		funcionarios.add(funcionario);
+		
 		return true;
 	}
 	

@@ -11,7 +11,10 @@ public class Programador extends Horista{
 		super(nome, codigo, valorHora, numeroHoras);
 	}
 
-	protected String cargo(){
-		return "";
+	@Override
+	protected String cargo() {
+		return "Programador";
 	}
+
+
 }
