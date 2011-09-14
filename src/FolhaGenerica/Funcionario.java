@@ -30,7 +30,7 @@ public abstract class Funcionario implements Serializable{
 		System.out.println("Codigo: " + codigo);
 		System.out.println("Nome: " + nome);
 		System.out.println("Cargo: " + cargo());
-		System.out.println("Salario: " + salario());
+		System.out.println("Salario: " + salario() +"\n");
 		
 	}
 	

@@ -1,6 +1,7 @@
 package folhaGenerica;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import folhaGenerica.Funcionario;
@@ -13,7 +14,7 @@ public class Empresa implements Serializable{
 	private List<Funcionario> funcionarios;
 	
 	public Empresa() {
-		
+		funcionarios = new ArrayList<Funcionario>();
 	}
 	
 	public Empresa(String nome) {
@@ -25,6 +26,11 @@ public class Empresa implements Serializable{
 		for(Funcionario f : funcionarios){
 			f.gerarContaCheque();
 		}
+		
+	}
+	
+	public void gravarFolha(){
+		
 		
 	}
 

@@ -18,9 +18,6 @@ public abstract class Mensalista extends Funcionario{
 		return salario + comissao();
 	}
 	
-	public double getSalario() {
-		return salario;
-	}
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}

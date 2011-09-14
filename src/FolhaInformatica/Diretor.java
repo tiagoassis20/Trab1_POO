@@ -12,7 +12,7 @@ public class Diretor extends Mensalista{
 
 	@Override
 	protected double comissao() {
-		return salario() + 300;
+		return 1000 ;
 	}
 
 	@Override

@@ -8,25 +8,45 @@ public class EmpresaInformatica extends Empresa{
 	
 	public boolean insereProgramador(String nome,int codigo,Double valorHora,int numeroHoras){
 		
-		Programador programador = new Programador(nome,codigo,valorHora,numeroHoras);
+		try{
+			Programador programador = new Programador(nome,codigo,valorHora,numeroHoras);
+		}catch (Exception e) {
+			System.out.println("Erro ao inserir Programador!");
+			e.printStackTrace();
+		}
 		
 		return true;
 	}
 	public boolean insereAnalista(String nome,int codigo,Double valorHora,int numeroHoras){
 		
-		Analista analista = new Analista(nome, codigo, valorHora, numeroHoras);
+		try{
+			Analista analista = new Analista(nome, codigo, valorHora, numeroHoras);
+		}catch (Exception e) {
+			System.out.println("Erro ao inserir Analista!");
+			e.printStackTrace();
+		}
 		
 		return true;
 	}
 	public boolean insereGerente(String nome,int codigo,Double salario){
 		
-		Gerente gerente = new Gerente(nome, codigo, salario);
+		try{
+			Gerente gerente = new Gerente(nome, codigo, salario);
+		}catch (Exception e) {
+			System.out.println("Erro ao inserir Gerente!");
+			e.printStackTrace();
+		}
 		
 		return true;
 	}
 	public boolean insereDiretor(String nome,int codigo,Double salario){
 		
-		Diretor diretor = new Diretor(nome, codigo, salario);
+		try{
+			Diretor diretor = new Diretor(nome, codigo, salario);
+		}catch (Exception e) {
+			System.out.println("Erro ao inserir Diretor");
+			e.printStackTrace();
+		}
 		
 		return true;
 	}
