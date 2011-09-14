@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import folhaGenerica.Empresa;
+import folhaGenerica.Funcionario;
 
 
 public class Leitor {
@@ -18,6 +19,7 @@ public class Leitor {
 			
 			ObjectInputStream input = new ObjectInputStream(new FileInputStream("src/empresa.obj"));
 			empresa = (Empresa) input.readObject();
+			input.close();
 			
 		}catch (FileNotFoundException e) {
 			System.out.println("Arquivo empresa.obj n‹o encontrado.");
@@ -29,7 +31,11 @@ public class Leitor {
 			e.printStackTrace();
 		}
 		
-		
+		System.out.println("Empresa:"+ empresa.getNome()+"\n");
+		System.out.println("Funcionarios:");
+		for(Funcionario f : empresa.exibirFuncionarios()){
+			System.out.println(f.getNome());
+		}
 		
 	}
 

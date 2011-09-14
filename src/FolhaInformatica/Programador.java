@@ -16,5 +16,4 @@ public class Programador extends Horista{
 		return "Programador";
 	}
 
-
 }

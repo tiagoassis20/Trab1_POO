@@ -63,6 +63,11 @@ public class Empresa implements Serializable{
 		return true;
 	}
 	
+	public List<Funcionario> exibirFuncionarios(){
+		
+		return funcionarios;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
