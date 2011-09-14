@@ -1,5 +1,5 @@
 Empresa:Compustar;
-Gerente:1,José,5000.00;
-Diretor:2,João,7000.00;
+Gerente:1,Jose,5000.00;
+Diretor:2,Joao,7000.00;
 Programador:3,Maria,3000.00,100.00;
 Analista:4,Aline,4000.00,230;

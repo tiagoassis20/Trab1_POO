@@ -18,14 +18,17 @@ public class Leitor {
 			
 			ObjectInputStream input = new ObjectInputStream(new FileInputStream("src/empresa.obj"));
 			empresa = (Empresa) input.readObject();
-			
+			empresa.gerarFolha();
 		}catch (FileNotFoundException e) {
-			System.out.println("Arquivo empresa.obj n‹o encontrado.");
+			System.out.println("Arquivo empresa.obj nï¿½o encontrado.");
 			e.printStackTrace();
 		}catch (IOException e) {
 			e.printStackTrace();
 		}catch (ClassNotFoundException e) {
-			System.out.println("Classe Empresa n‹o encontrada.");
+			System.out.println("Classe Empresa nï¿½o encontrada.");
+			e.printStackTrace();
+		}catch (NullPointerException e) {
+			System.out.println("Arquivo nï¿½o encontrado.");
 			e.printStackTrace();
 		}
 		
