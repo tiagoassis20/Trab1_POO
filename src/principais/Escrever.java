@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import java.util.regex.Pattern;
+
 import folhaGenerica.Empresa;
 import folhaInformatica.Analista;
 import folhaInformatica.Diretor;
@@ -30,62 +32,88 @@ public class Escrever {
 			leitor.close();
 			
 		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo n‹o encontrado.");
+			System.out.println("Arquivo nï¿½o encontrado.");
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			System.out.println("Arquivo nï¿½o encontrado.");
 			e.printStackTrace();
 		}
 		
 		Empresa empresa = new Empresa();
+
 		Diretor diretor = null;
 		Gerente gerente = null;
 		Analista analista = null;
 		Programador programador = null;
 		
-			empresa.setNome(linhas.get(0).substring(linhas.get(0).indexOf(":")+1,linhas.get(0).indexOf(";")));
-			
+
+			Pattern p = Pattern.compile("[:;,]");
 			for(int i = 0; i < linhas.size(); i++){
 				
-				String linha = linhas.get(i);
+				String[] dados = p.split(linhas.get(i));
 				
-				if(linha.startsWith("Diretor")){
+
+				if(dados[0].equalsIgnoreCase("Diretor")){
 					diretor = new Diretor(
-							linha.substring(linha.indexOf(",") +1,linha.lastIndexOf(",")), 
-							Integer.parseInt(linha.substring(linha.indexOf(":")+1,linha.indexOf(","))), 
-							Double.parseDouble(linha.substring(linha.lastIndexOf(",")+1,linha.indexOf(";"))) 
-					);
+										dados[2], 
+										Integer.parseInt(dados[1]), 
+										Double.parseDouble(dados[3]) 
+										);
+					empresa.inserirFuncionario(diretor);
+					System.out.println("Diretor");
+					System.out.println(diretor.getCodigo() + diretor.getNome());
 					
-				}else if(linha.startsWith("Gerente")){
+				}else if(dados[0].equalsIgnoreCase("Gerente")){
 					gerente = new Gerente(
-							linha.substring(linha.indexOf(",") +1,linha.lastIndexOf(",")), 
-							Integer.parseInt(linha.substring(linha.indexOf(":")+1,linha.indexOf(","))), 
-							Double.parseDouble(linha.substring(linha.lastIndexOf(",")+1,linha.indexOf(";"))) 
-					);
+										dados[2], 
+										Integer.parseInt(dados[1]), 
+										Double.parseDouble(dados[3]) 
+										);
+					empresa.inserirFuncionario(gerente);
+					System.out.println("Gerente");
+					System.out.println(gerente.getCodigo() + gerente.getNome());
 					
-				}else if(linha.startsWith("Analista")){
-					String aux = linha.substring(linha.indexOf(",") +1, linha.lastIndexOf(",")) ;
+					
+				}else if(dados[0].equalsIgnoreCase("Analista")){
 					analista = new Analista(
-						aux.substring(aux.indexOf(""), aux.indexOf(",")),
-						Integer.parseInt(linha.substring(linha.indexOf(":")+1,linha.indexOf(","))), 
-						Double.parseDouble(aux.substring(aux.indexOf(",")+1)),
-						Integer.parseInt(linha.substring(linha.indexOf(":")+1,linha.indexOf(",")))
-					);
+							dados[2], 
+							Integer.parseInt(dados[1]), 
+							Double.parseDouble(dados[3]),
+							Integer.parseInt(dados[4])
+							);
+					empresa.inserirFuncionario(analista);
 					
-				}else if(linha.startsWith("Programador")){
-					String aux = linha.substring(linha.indexOf(",") +1, linha.lastIndexOf(",")) ;
+					
+					
+					System.out.println("analista");
+					System.out.println(analista.getCodigo() + analista	.getNome());
+					
+				
+					//System.out.println( Integer.parseInt(linha.substring(linha.indexOf(":")+1,linha.indexOf(","))) ); 
+					//System.out.println( Double.parseDouble(linha.substring(linha.indexOf(",")+1,linha.lastIndexOf(","))) );
+					//System.out.println( Integer.parseInt(linha.substring(linha.lastIndexOf(",")+1,linha.indexOf(";"))) );
+					
+				}else if(dados[0].equalsIgnoreCase("Programador")){
 					programador = new Programador(
-							aux.substring(aux.indexOf(""), aux.indexOf(",")),
-							Integer.parseInt(linha.substring(linha.indexOf(":")+1,linha.indexOf(","))), 
-							Double.parseDouble(aux.substring(aux.indexOf(",")+1)),
-							Integer.parseInt(linha.substring(linha.indexOf(":")+1,linha.indexOf(",")))
-					);
+							dados[2], 
+							Integer.parseInt(dados[1]), 
+							Double.parseDouble(dados[3]),
+							Integer.parseInt(dados[4])
+							);
+					empresa.inserirFuncionario(programador);
+					
+					System.out.println("programador");
+					System.out.println(programador.getCodigo() + programador.getNome());
 				}
 			}
 			
+
 			
-			empresa.inserirFuncionario(diretor);
-			empresa.inserirFuncionario(gerente);
-			empresa.inserirFuncionario(analista);
-			empresa.inserirFuncionario(programador);	
 			
+			
+			
+		
+
 		try {
 			
 			ObjectOutputStream arquivo = new ObjectOutputStream(new FileOutputStream("src/empresa.obj"));
@@ -93,11 +121,13 @@ public class Escrever {
 			arquivo.close();
 			
 		} catch (Exception e) {
-			System.out.println("Problema na grava‹o");
+			System.out.println("Problema na gravaï¿½ï¿½o");
 			System.out.println(e);
 		}
 		
+
 		System.out.println("Empresa "+empresa.getNome()+" Salva com Sucesso!" );
+
 	}
 
 }
