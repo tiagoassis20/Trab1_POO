@@ -1,5 +1,7 @@
 package folhaGenerica;
 
+import excecoes.ParametroIncorreto;
+
 
 public abstract class Horista extends Funcionario{
 	
@@ -8,8 +10,11 @@ public abstract class Horista extends Funcionario{
 	private double valorHora;
 	private int numeroHoras;
 	
-	public Horista(String nome, int codigo, double valorHora,int numeroHoras) {
+	public Horista(String nome, int codigo, double valorHora,int numeroHoras) throws ParametroIncorreto {
 		super(nome,codigo);
+		if(valorHora < 0 || numeroHoras < 0){
+			throw new ParametroIncorreto();
+		}
 		this.valorHora = valorHora;
 		this.numeroHoras = numeroHoras;
 	}

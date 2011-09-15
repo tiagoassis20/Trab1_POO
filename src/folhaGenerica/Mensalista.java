@@ -1,13 +1,18 @@
 package folhaGenerica;
 
+import excecoes.ParametroIncorreto;
+
 public abstract class Mensalista extends Funcionario{
 
 	private static final long serialVersionUID = -6927116103478726289L;
 	
 	private double salario;
 
-	public Mensalista(String nome,int codigo,double salario) {
+	public Mensalista(String nome,int codigo,double salario) throws ParametroIncorreto{
 		super(nome,codigo);
+		if(salario<0){
+			throw new ParametroIncorreto();
+		}
 		this.salario = salario;
 	}
 	

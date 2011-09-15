@@ -1,12 +1,13 @@
 package folhaInformatica;
 
+import excecoes.ParametroIncorreto;
 import folhaGenerica.Mensalista;
 
 public class Diretor extends Mensalista{
 	
 	private static final long serialVersionUID = -6435146326211146310L;
 	
-	public Diretor(String nome, int codigo, double salario) {
+	public Diretor(String nome, int codigo, double salario)  throws ParametroIncorreto {
 		super(nome, codigo, salario);
 	}
 

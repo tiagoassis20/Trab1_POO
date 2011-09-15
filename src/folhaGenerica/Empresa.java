@@ -1,8 +1,11 @@
 package folhaGenerica;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import excecoes.FuncionarioDuplicado;
+import excecoes.ParametroIncorreto;
 import folhaGenerica.Funcionario;
 
 public class Empresa implements Serializable{
@@ -13,10 +16,13 @@ public class Empresa implements Serializable{
 	private List<Funcionario> funcionarios;
 	
 	public Empresa() {
-		
+		funcionarios = new ArrayList<Funcionario>();
 	}
 	
-	public Empresa(String nome) {
+	public Empresa(String nome) throws ParametroIncorreto {
+		if(nome == null){
+			throw new ParametroIncorreto();
+		}
 		this.nome = nome;
 
 	}
@@ -56,12 +62,11 @@ public class Empresa implements Serializable{
 
 	}
 	
-	public boolean inserirFuncionario(Funcionario funcionario){
-		if(!funcionarios.isEmpty()) {
+	public boolean inserirFuncionario(Funcionario funcionario) throws FuncionarioDuplicado{
+		if(funcionarios != null) {
 			for(Funcionario f : funcionarios){
 				if(f.getCodigo() == funcionario.getCodigo()){
-					System.out.println("Esse funcion�rio j� existe!");
-					return false;
+					throw new FuncionarioDuplicado(funcionario);
 				}
 			}
 		}

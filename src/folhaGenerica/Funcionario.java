@@ -3,6 +3,8 @@ package folhaGenerica;
 import java.io.Serializable;
 import java.util.List;
 
+import excecoes.ParametroIncorreto;
+
 public abstract class Funcionario implements Serializable{
 	
 	private static final long serialVersionUID = 8043190151723169974L;
@@ -15,9 +17,15 @@ public abstract class Funcionario implements Serializable{
 		
 	}
 	
-	public Funcionario(String nome,int codigo){
+	public Funcionario(String nome,int codigo) throws ParametroIncorreto {
+
+		if(codigo < 0 || nome == null){
+			throw new ParametroIncorreto();
+		}
+		
 		this.nome = nome;
 		this.codigo = codigo;
+
 	}
 	
 	protected  abstract double salario();

@@ -1,5 +1,7 @@
 package principais;
 
+import excecoes.FuncionarioDuplicado;
+import excecoes.ParametroIncorreto;
 import folhaGenerica.Empresa;
 import folhaInformatica.Analista;
 import folhaInformatica.Diretor;
@@ -10,7 +12,7 @@ import folhaInformatica.Programador;
 public class Teste {
 
 	public static void main(String[] args) {
-
+		try{
 		EmpresaInformatica loja = new EmpresaInformatica();
 			loja.insereAnalista("Jose", 1,30.00, 55);
 			loja.insereDiretor("Daniel", 1, 4000.00);
@@ -29,6 +31,11 @@ public class Teste {
 			compustar.inserirFuncionario(programador);
 			
 		compustar.gerarFolha();
+		}catch (FuncionarioDuplicado e) {
+			e.exibir();
+		}catch (ParametroIncorreto e) {
+			e.exibir();
+		}
 	}
 
 }
